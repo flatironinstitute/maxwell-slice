@@ -1,4 +1,8 @@
 node_modules
+*.o
+scratchspace/SphereScat/*.m
+scratchspace/SphereScat/fort.13
+scratchspace/SphereScat/int2
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

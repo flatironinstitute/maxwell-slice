@@ -1,0 +1,5 @@
+gfortran -c -O2 -std=legacy *.f 
+gfortran -o int2 -O2 -std=legacy testdriver4f90.o helmrouts.o h3dmplocfinal2f90.o cgmrespcnew.o \
+getincomingf90.o projectionsf90.o rotprojf90.o dfft.o prinm.o cdjseval3d.o planewave2.o yrecursion2.o prini.o \
+postproc2.o spheresolver.o gaussq.o matvecfmmmultsph2f90.o shutils2.o mpoletofieldnew2f90.o
+

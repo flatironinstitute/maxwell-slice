@@ -22,3 +22,36 @@ Placeholder for Ali/Jeremy/Leslie project for visualizing outputs of 3D Maxwell 
 * matplotlib
     - [mplot3d](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#d-plots-in-3d)
 
+## Running SphereScat
+
+Prerequisites: gfortran
+
+```
+cd scratchspace/SphereScat
+./testcompile4
+```
+
+This will produce a bunch of .o files and an executable called `int2`
+
+Let's run the program:
+
+```
+./int2
+```
+
+This reads input parameters from the following two files:
+* controls.dat
+* spinsimp.dat
+
+And produces a few MATLAB files:
+
+* data.m - 4 columns: x, y, z, scalar
+    - n = number of rows = number of targets
+    - represents phi
+* field.m - 6 columns: re1, im1, re2, im2, re3, im3 (not reshaped)
+    - n rows
+    - represents grad(phi)
+* sphereplot.m
+    - sphere locations
+* sphereplot2.m
+    - sphere locations with phi plotted on the surface
