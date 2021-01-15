@@ -55,3 +55,8 @@ And produces a few MATLAB files:
     - sphere locations
 * sphereplot2.m
     - sphere locations with phi plotted on the surface
+
+![Output of sphereplot2](https://user-images.githubusercontent.com/3679296/104742094-06cf1b80-5718-11eb-9924-4e5ce70d929d.png)
+
+*Output from sphereplot2.m*
+
