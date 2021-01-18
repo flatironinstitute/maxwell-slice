@@ -60,3 +60,19 @@ And produces a few MATLAB files:
 
 *Output from sphereplot2.m*
 
+## Install package in development (editable) mode
+
+When installing in development mode, you don't need to reinstall every time you make changes to the source code.
+
+```bash
+# Clone this repo and cd to the base directory
+pip install -e .
+```
+
+To test that it is installed. In ipython:
+
+```
+import maxwell_slice as ms
+ms.test_function()
+# should print "hello"
+```
