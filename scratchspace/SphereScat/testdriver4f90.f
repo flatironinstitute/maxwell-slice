@@ -356,7 +356,9 @@ c
      1    centers,nterms,sh1,sh2,targ,ntargs,htot,
      2    fld,cw,lcw,lused,ier)
       open(unit=20, file='data.m',status='unknown') 
-      open(unit=21, file='field.m',status='unknown') 
+      open(unit=21, file='field.m',status='unknown')
+      open(unit=22, file='data.bin',status='unknown')
+      open(unit=23, file='field.bin',status='unknown') 
       write(20,*) 'edens = ['
       write(21,*) 'cfield = ['
       do i = 1,ntargs

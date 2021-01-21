@@ -1,10 +1,11 @@
-from ._temporarydirectory import TemporaryDirectory
-from ._shellscript import ShellScript
+from _temporarydirectory import TemporaryDirectory
+from _shellscript import ShellScript
 
 def sphere_scat():
     # Creates a temporary) working directory (will get cleaned up even if exception is raised)
     # if remove == False, the temporary directory does not get removed
     with TemporaryDirectory(remove=True) as tmpdir:
+        print(f'Using temporary dir:{tmpdir}.path()')
         input_fname = tmpdir + '/input.txt'
         output_fname = tmpdir + '/output.txt'
 
@@ -16,6 +17,9 @@ def sphere_scat():
         # Here is where we run the fortran program using a bash script
         s = ShellScript(f'''
         #!/bin/bash
+        cd ..
+        cd scratchspace/SphereScat
+        ./int2
 
         cd {tmpdir}
         # this would be replaced by the fortran call...
@@ -29,3 +33,5 @@ def sphere_scat():
             x = f.read()
         # return the output
         return x
+
+print(sphere_scat())
