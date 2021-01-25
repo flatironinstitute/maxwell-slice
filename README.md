@@ -76,3 +76,15 @@ import maxwell_slice as ms
 ms.test_function()
 # should print "hello"
 ```
+
+## How to test current sphere_scat program
+
+At the moment, to run the sphere_scat program, all you need to do is:
+```
+python sphere_scat.py
+```
+Or (depending on how python is set up):
+```
+python3 sphere_scat.py
+```
+This should run the fortran code and print out a bunch of specifications from that code. It should also print out "test input arguments" at the very end.
