@@ -1,37 +1,40 @@
+import os
+import shutil
 from _temporarydirectory import TemporaryDirectory
 from _shellscript import ShellScript
+import numpy as np
 
 def sphere_scat():
     # Creates a temporary) working directory (will get cleaned up even if exception is raised)
     # if remove == False, the temporary directory does not get removed
-    with TemporaryDirectory(remove=True) as tmpdir:
+    with TemporaryDirectory(remove=False) as tmpdir:
         print(f'Using temporary dir:{tmpdir}.path()')
-        input_fname = tmpdir + '/input.txt'
-        output_fname = tmpdir + '/output.txt'
 
-        # generate input files in working directory
-        with open(input_fname, 'w') as f:
-            f.write('test input arguments')
-        # run the fortran program
+        thisdir = os.path.dirname(os.path.realpath(__file__))
+
+        # generate the input file
+        # in future: we'll have a controls.dat.j2 and fill in the args
+        shutil.copyfile(f'{thisdir}/../scratchspace/SphereScat/controls.dat', f'{tmpdir}/controls.dat')
+        shutil.copyfile(f'{thisdir}/../scratchspace/SphereScat/spinsimp.dat', f'{tmpdir}/spinsimp.dat')
 
         # Here is where we run the fortran program using a bash script
         s = ShellScript(f'''
         #!/bin/bash
-        cd ..
-        cd scratchspace/SphereScat
-        ./int2
-
         cd {tmpdir}
-        # this would be replaced by the fortran call...
-        cat input.txt > output.txt
+        {thisdir}/../scratchspace/SphereScat/int2
         ''')
         s.start()
         s.wait()
 
-        # read output
-        with open(output_fname, 'r') as f:
-            x = f.read()
-        # return the output
-        return x
+        nnx = 20
+        nny = 20
+        nnz = 20
+        data = np.fromfile(f'{tmpdir}/data.bin', dtype='>d')
+        field = np.fromfile(f'{tmpdir}/field.bin', dtype='>d')
+        data = data.reshape((5, nnx, nny, nnz))
+        return data, field
 
-print(sphere_scat())
+if __name__ == '__main__':
+    data, field = sphere_scat()
+    print(data.shape)
+    print(field.shape)
