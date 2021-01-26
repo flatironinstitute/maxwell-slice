@@ -357,14 +357,18 @@ c
      2    fld,cw,lcw,lused,ier)
       open(unit=20, file='data.m',status='unknown') 
       open(unit=21, file='field.m',status='unknown')
-      open(unit=22, file='data.bin',status='unknown')
-      open(unit=23, file='field.bin',status='unknown') 
+      open(unit=22, file='data.bin',status='unknown',form='unformatted')
+      open(unit=23, file='field.bin',status='unknown',
+     1    form='unformatted')
       write(20,*) 'edens = ['
       write(21,*) 'cfield = ['
       do i = 1,ntargs
          write(20,1001) targ(1,i), targ(2,i), targ(3,i),
      1               real(htot(i))
          write(21,1001) fld(1,i),fld(2,i),fld(3,i)
+         write(22) targ(1,i), targ(2,i), targ(3,i),
+     1               real(htot(i))
+         write(23) fld(1,i),fld(2,i),fld(3,i)
       enddo
       write(20,*) '];'
       write(21,*) '];'
