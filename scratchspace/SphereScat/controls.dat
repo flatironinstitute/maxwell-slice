@@ -12,6 +12,6 @@
 10.0d0  xhigh
 10.0d0  yhigh
 10.0d0  zhigh
-20     nnx    (number of points in each dimension)
-20     nny
-20     nnz
+xdim     nnx    (number of points in each dimension)
+ydim     nny
+zdim     nnz
