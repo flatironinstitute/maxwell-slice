@@ -4,7 +4,7 @@ from _temporarydirectory import TemporaryDirectory
 from _shellscript import ShellScript
 import numpy as np
 
-def sphere_scat():
+def sphere_scat(nnx = 20, nny = 20, nnz = 20):
     # Creates a temporary) working directory (will get cleaned up even if exception is raised)
     # if remove == False, the temporary directory does not get removed
     with TemporaryDirectory(remove=False) as tmpdir:
@@ -17,19 +17,15 @@ def sphere_scat():
         shutil.copyfile(f'{thisdir}/../scratchspace/SphereScat/controls.dat', f'{tmpdir}/controls.dat')
         shutil.copyfile(f'{thisdir}/../scratchspace/SphereScat/spinsimp.dat', f'{tmpdir}/spinsimp.dat')
 
-        nnx = input("Enter nnx: ")
-        nny = input("Enter nny: ")
-        nnz = input("Enter nnz: ")
-
         controls = f'{tmpdir}/controls.dat'
         # Read in the file
         with open(controls, 'r') as file :
             filedata = file.read()
 
             # Replace the target string
-        filedata = filedata.replace('xdim', nnx)
-        filedata = filedata.replace('ydim', nny)
-        filedata = filedata.replace('zdim', nnz)
+        filedata = filedata.replace('xdim', str(nnx))
+        filedata = filedata.replace('ydim', str(nny))
+        filedata = filedata.replace('zdim', str(nnz))
 
             # Write the file out again
         with open(controls, 'w') as file:
@@ -46,10 +42,9 @@ def sphere_scat():
         s.start()
         s.wait()
 
-        nnx = int(nnx)
-        nny = int(nny)
-        nnz = int(nnz)
         print(f'nnx is {nnx}')
+        print(f'nny is {nny}')
+        print(f'nnz is {nnz}')
 
         data = np.fromfile(f'{tmpdir}/data.bin', dtype='>d')
         field = np.fromfile(f'{tmpdir}/field.bin', dtype='>d')
