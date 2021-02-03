@@ -1,0 +1,2 @@
+gfortran -c -O2 -std=legacy test_write.f
+gfortran -o test_write -O2 -std=legacy test_write.o
