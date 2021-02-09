@@ -1,7 +1,7 @@
 import os
 import shutil
-from _temporarydirectory import TemporaryDirectory
-from _shellscript import ShellScript
+from ._temporarydirectory import TemporaryDirectory
+from ._shellscript import ShellScript
 from jinja2 import Template
 import numpy as np
 
@@ -39,9 +39,6 @@ def sphere_scat(nnx = 21, nny = 22, nnz = 23):
         data = np.fromfile(f'{tmpdir}/data.bin', dtype='>d')
         field = np.fromfile(f'{tmpdir}/field.bin', dtype='>d')
         data = data.reshape((7, nnx, nny, nnz))
+        field = field.reshape((6, nnx, nny, nnz))
+        field = field[[0,2,4]] + 1j * field[[1,3,5]]
         return data, field
-
-if __name__ == '__main__':
-    data, field = sphere_scat()
-    print(data.shape)
-    print(field.shape)

@@ -358,9 +358,11 @@ c
       open(unit=20, file='data.m',status='unknown') 
       open(unit=21, file='field.m',status='unknown')
       open(unit=22, file='data.bin',status='unknown',
-     1    form='unformatted', access='direct', recl=8*7)
+     1    form='unformatted', access='direct', recl=8*7,
+     1    convert='big_endian')
       open(unit=23, file='field.bin',status='unknown',
-     1    form='unformatted', access='direct', recl=8*6)
+     1    form='unformatted', access='direct', recl=8*6,
+     1    convert='big_endian')
       write(20,*) 'edens = ['
       write(21,*) 'cfield = ['
       do i = 1,ntargs
