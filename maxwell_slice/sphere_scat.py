@@ -14,10 +14,10 @@ def sphere_scat(nnx = 20, nny = 20, nnz = 20):
 
         # generate the input file
         # in future: we'll have a controls.dat.j2 and fill in the args
-        shutil.copyfile(f'{thisdir}/../scratchspace/SphereScat/controls.dat', f'{tmpdir}/controls.dat')
+        shutil.copyfile(f'{thisdir}/../scratchspace/SphereScat/controls.dat.jinja2', f'{tmpdir}/controls.dat.jinja2')
         shutil.copyfile(f'{thisdir}/../scratchspace/SphereScat/spinsimp.dat', f'{tmpdir}/spinsimp.dat')
 
-        controls = f'{tmpdir}/controls.dat'
+        controls = f'{tmpdir}/controls.dat.jinja2'
         # Read in the file
         with open(controls, 'r') as file :
             filedata = file.read()
