@@ -1,17 +1,17 @@
 0       ifin (0 -> output scattered field, 1 -> output total field
-0       iscat (0 -> artificial data for accuracy test, 1 true scattering)
+1       iscat (0 -> artificial data for accuracy test, 1 true scattering)
 -10.0d0  xxx(1)    (point in exterior region)
 2.0d0   xxx(2)
 1.300   xxx(3)    
 1       ifpr_geom (print geometry info to file)
 200     numit (max number of GMRES iterations)
 1.0d-9  eps  (GMRES tolerance)
--2.00   xlow  (output grid corners) 
--2.00   ylow  
+-4.00   xlow  (output grid corners) 
+-4.00   ylow  
 -2.00   zlow  
-10.0d0  xhigh
-10.0d0  yhigh
-10.0d0  zhigh
+8.00  xhigh
+20.00  yhigh
+2.00  zhigh
 {{ nnx }}    nnx    (number of points in each dimension)
 {{ nny }}    nny
 {{ nnz }}    nnz
