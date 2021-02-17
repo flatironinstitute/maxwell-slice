@@ -38,7 +38,7 @@ def sphere_scat(nnx = 21, nny = 22, nnz = 23):
 
         data = np.fromfile(f'{tmpdir}/data.bin', dtype='>d')
         field = np.fromfile(f'{tmpdir}/field.bin', dtype='>d')
-        data = data.reshape((7, nnx, nny, nnz))
-        field = field.reshape((6, nnx, nny, nnz))
-        field = field[[0,2,4]] + 1j * field[[1,3,5]]
+        data = data.reshape((7, nnx, nny, nnz), order='F')
+        field = field.reshape((6, nnx, nny, nnz), order='F')
+        field = field[[0, 2, 4]] + 1j * field[[1, 3, 5]]
         return data, field
